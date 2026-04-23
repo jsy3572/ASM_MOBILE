@@ -12,11 +12,41 @@
         .uplus-bg-magenta { background-color: #E6007E; }
         .hero-gradient { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1556742044-3c52d6e88c62?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center; }
         .card-shadow { box-shadow: 0 10px 25px -5px rgba(230, 0, 126, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05); }
+        .pop-gradient { background: linear-gradient(135deg, #E6007E 0%, #ff52af 100%); }
         /* 채널톡 테마 컬러 */
         .ch-talk-bg { background-color: #FFEB00; color: #3C1E1E; }
+        
+        /* 팝업 애니메이션 */
+        #popup { display: flex; }
+        .pop-card { animation: bounce 2s infinite; }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
+
+    <!-- Entry Popup -->
+    <div id="popup" class="fixed inset-0 z-[100] items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-[30px] overflow-hidden max-w-sm w-full shadow-2xl relative">
+            <div class="pop-gradient p-6 text-white text-center">
+                <span class="bg-white text-pink-600 text-[10px] font-bold px-3 py-1 rounded-full mb-2 inline-block">EXCLUSIVE EVENT</span>
+                <h3 class="text-xl font-black mb-1">안성·평택 지역<br>단독 POP 특가 OPEN!</h3>
+            </div>
+            <div class="p-6 text-center">
+                <!-- User Provided Image Applied Here -->
+                <img src="https://i.ibb.co/q3bPyvg1/Gemini-Generated-Image-v31lscv31lscv31l.png" alt="U+ 특가 팝업" class="w-full h-auto rounded-2xl mb-4 shadow-md border border-gray-100">
+                
+                <p class="text-gray-600 text-sm mb-4">지금 상담만 받아도 사은품 100% 증정!<br><span class="font-bold uplus-magenta">역대급 지원금을 확인하세요.</span></p>
+                
+                <button onclick="window.open('https://eozkp.channel.io', '_blank')" class="w-full uplus-bg-magenta text-white font-bold py-4 rounded-xl mb-3 hover:opacity-90 transition">
+                    혜택 바로받기 (실시간 상담)
+                </button>
+                <button onclick="document.getElementById('popup').style.display='none'" class="text-gray-400 text-xs underline">오늘 하루 보지 않기</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Header -->
     <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-100">
@@ -70,6 +100,40 @@
         </div>
     </section>
 
+    <!-- POP Special Section -->
+    <section class="py-12 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-[30px] p-8 md:p-12 flex flex-col md:flex-row items-center gap-10 border-4 border-pink-200 shadow-sm">
+                <div class="md:w-1/3">
+                    <div class="pop-card bg-white p-6 rounded-2xl shadow-xl border-t-8 border-pink-500">
+                        <span class="text-xs font-bold text-gray-400 uppercase tracking-widest">Limited Offer</span>
+                        <h3 class="text-2xl font-black uplus-magenta mt-1 italic">POP 기획 특가!</h3>
+                        <div class="h-1 w-10 uplus-bg-magenta my-3"></div>
+                        <p class="text-sm text-gray-600">안성·평택 최저가 보상제 실시 중입니다.</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 w-full">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-gray-900 text-white p-6 rounded-2xl flex justify-between items-center group cursor-pointer" onclick="window.open('https://eozkp.channel.io', '_blank')">
+                            <div>
+                                <p class="text-xs text-gray-400">인터넷 + TV 결합</p>
+                                <h4 class="text-lg font-bold">최대 47만원 증정</h4>
+                            </div>
+                            <span class="text-2xl group-hover:scale-125 transition">🎁</span>
+                        </div>
+                        <div class="pop-gradient text-white p-6 rounded-2xl flex justify-between items-center group cursor-pointer" onclick="window.open('https://eozkp.channel.io', '_blank')">
+                            <div>
+                                <p class="text-xs text-pink-200">기존 폰 반납 시</p>
+                                <h4 class="text-lg font-bold">추가 15만원 지원</h4>
+                            </div>
+                            <span class="text-2xl group-hover:scale-125 transition">💰</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Promotion Banners -->
     <section id="benefits" class="py-20">
         <div class="container mx-auto px-4">
@@ -80,7 +144,7 @@
 
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Benefit 1 -->
-                <div class="bg-white p-8 rounded-3xl card-shadow border border-gray-50 text-center">
+                <div class="bg-white p-8 rounded-3xl card-shadow border border-gray-50 text-center hover:bg-pink-50 transition">
                     <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 uplus-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     </div>
@@ -88,7 +152,7 @@
                     <p class="text-gray-600">공시지원금은 기본, 안성·평택 지역 특별 추가 보조금을 더해 전국 최저가를 보장합니다.</p>
                 </div>
                 <!-- Benefit 2 -->
-                <div class="bg-white p-8 rounded-3xl card-shadow border border-gray-50 text-center">
+                <div class="bg-white p-8 rounded-3xl card-shadow border border-gray-50 text-center hover:bg-pink-50 transition">
                     <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 uplus-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                     </div>
@@ -96,7 +160,7 @@
                     <p class="text-gray-600">불필요한 부가서비스 강요 금지! 고객님의 통화 패턴에 맞는 가장 저렴한 요금제를 제안합니다.</p>
                 </div>
                 <!-- Benefit 3 -->
-                <div class="bg-white p-8 rounded-3xl card-shadow border border-gray-50 text-center">
+                <div class="bg-white p-8 rounded-3xl card-shadow border border-gray-50 text-center hover:bg-pink-50 transition">
                     <div class="w-16 h-16 bg-pink-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                         <svg class="w-8 h-8 uplus-magenta" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
@@ -174,21 +238,21 @@
     <!-- Consultation Form -->
     <section id="consult" class="py-24">
         <div class="container mx-auto px-4 max-w-4xl">
-            <div class="bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+            <div class="bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row border border-gray-100">
                 <div class="uplus-bg-magenta md:w-2/5 p-10 text-white flex flex-col justify-center">
                     <h2 class="text-3xl font-bold mb-6 italic leading-tight">30초면 끝나는<br>최저가 확인!</h2>
                     <p class="text-pink-100 mb-8">지금 신청하시면 안성·평택 지역 매니저가 직접 최적의 설계를 도와드립니다.</p>
                     <ul class="space-y-4">
-                        <li class="flex items-center gap-3">
-                            <span class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs">✓</span>
+                        <li class="flex items-center gap-3 text-sm">
+                            <span class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-[10px]">✓</span>
                             전 기종 재고 즉시 확인
                         </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs">✓</span>
+                        <li class="flex items-center gap-3 text-sm">
+                            <span class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-[10px]">✓</span>
                             비대면 1:1 채팅 상담 가능
                         </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-xs">✓</span>
+                        <li class="flex items-center gap-3 text-sm">
+                            <span class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center text-[10px]">✓</span>
                             방문 예약 시 사은품 증정
                         </li>
                     </ul>
@@ -215,7 +279,7 @@
                         </div>
                         <div class="flex items-start gap-2 pt-2">
                             <input type="checkbox" id="privacy" class="mt-1" required>
-                            <label for="privacy" class="text-xs text-gray-500">개인정보 수집 및 상담 목적 이용에 동의합니다. (전문 상담 외 용도로 사용되지 않습니다.)</label>
+                            <label for="privacy" class="text-[11px] text-gray-500 leading-tight">개인정보 수집 및 상담 목적 이용에 동의합니다. (전문 상담 외 용도로 사용되지 않습니다.)</label>
                         </div>
                         <button type="submit" class="w-full uplus-bg-magenta text-white font-bold py-4 rounded-xl shadow-lg shadow-pink-200 hover:scale-[1.02] transition">
                             무료 상담 신청하기
@@ -248,13 +312,13 @@
     <!-- Channel Talk Bottom CTA -->
     <section class="bg-white py-12 border-t border-gray-100">
         <div class="container mx-auto px-4 text-center">
-            <div class="inline-flex items-center gap-4 bg-gray-50 px-8 py-6 rounded-3xl border border-gray-200 card-shadow">
+            <div class="inline-flex flex-col md:flex-row items-center gap-4 bg-gray-50 px-8 py-6 rounded-3xl border border-gray-200 card-shadow">
                 <div class="w-12 h-12 ch-talk-bg rounded-2xl flex items-center justify-center text-xl">💬</div>
-                <div class="text-left">
+                <div class="text-center md:text-left">
                     <p class="text-sm text-gray-500">궁금한 점이 있으신가요?</p>
                     <h3 class="font-bold text-lg">지금 바로 <span class="uplus-magenta">채널톡 실시간 상담</span>을 시작하세요!</h3>
                 </div>
-                <button onclick="window.open('https://eozkp.channel.io', '_blank')" class="ml-4 ch-talk-bg px-6 py-3 rounded-xl font-bold hover:scale-105 transition">
+                <button onclick="window.open('https://eozkp.channel.io', '_blank')" class="md:ml-4 ch-talk-bg px-8 py-3 rounded-xl font-bold hover:scale-105 transition w-full md:w-auto mt-4 md:mt-0">
                     상담 시작
                 </button>
             </div>
@@ -274,7 +338,7 @@
                     <a href="#" class="hover:text-white transition">이용약관</a>
                 </div>
             </div>
-            <div class="text-[10px] border-t border-gray-800 pt-8 leading-relaxed">
+            <div class="text-[10px] border-t border-gray-800 pt-8 leading-relaxed opacity-50">
                 <p>사업자등록번호: 123-45-67890 | 대표자: 홍길동 | 주소: 경기도 평택시 비전동 유플러스 타워</p>
                 <p class="mt-2">본 사이트는 마케팅 목적으로 제작되었으며, 실제 개통 조건은 상담 시 결정됩니다. 이미지 내 모델 및 가격 정보는 시장 상황에 따라 변동될 수 있습니다.</p>
                 <p class="mt-4">© 2024 U+ Anseong-Pyeongtaek Top Dealer. All Rights Reserved.</p>
